@@ -44,4 +44,6 @@ access_token = api.exchange_code_for_access_token(code)
 with open('access_token.json', 'w') as outputFile:
     json.dump(access_token, outputFile, ensure_ascii=False)
 
+api.
+
 print ("Access token successfully obtained.")
