@@ -22,15 +22,19 @@ def retrieveCredentials():
         print(e.args)
 
 
-def getInstagramPictures(access_token, client_secret, id, count):
+def getInstagramMedia(access_token, client_secret, id, count):
     try:
         api = InstagramAPI(access_token=access_token, client_secret=client_secret)
         recent_media, next_ = api.user_recent_media(user_id=id, count=count)
         counter = 0
+        media_info = {}
         for media in recent_media:
             file_destination = os.path.join(image_path, 'img' + str(counter) + '.jpg')
             urllib.request.urlretrieve(media.images['standard_resolution'].url, file_destination)
+            media_info[counter] = {'image_name': file_destination, 'caption': media.caption}
             counter += 1
+        with open('image_info.json', 'w') as outfile.:
+            json.dump(media_info.to, outfile, indent=2)
     except Exception as e:
         print(e.args)
 
@@ -48,7 +52,7 @@ def get_jQuery():
 @app.route('/generate_images')
 def generate_images():
     data = retrieveCredentials()
-    getInstagramPictures(data[0], "", data[1]["id"], 10)
+    getInstagramMedia(data[0], "", data[1]["id"], 10)
 
 
 if __name__ == '__main__':
