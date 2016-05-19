@@ -27,17 +27,29 @@ def getInstagramMedia(access_token, client_secret, id, count):
         api = InstagramAPI(access_token=access_token, client_secret=client_secret)
         recent_media, next_ = api.user_recent_media(user_id=id, count=count)
         counter = 0
-        media_info = {}
+        metadata = {}
         for media in recent_media:
             file_destination = os.path.join(image_path, 'img' + str(counter) + '.jpg')
             urllib.request.urlretrieve(media.images['standard_resolution'].url, file_destination)
-            media_info[counter] = {'image_name': file_destination, 'caption': media.caption}
+            metadata[counter] = {'image_name': file_destination, 'caption': has_caption(media.caption)}
             counter += 1
-        with open('image_info.json', 'w') as outfile.:
-            json.dump(media_info.to, outfile, indent=2)
+        write_metadata(metadata)
+
     except Exception as e:
         print(e.args)
+    return
 
+
+def has_caption(caption):
+    if caption is None:
+        return ''
+    return caption.text
+
+
+def write_metadata(metadata):
+    media_info = {'metadata': metadata}
+    with open('image_info.json', 'w') as outfile:
+        json.dump(media_info, outfile, indent=2)
 
 @app.route('/')
 def main():
@@ -53,6 +65,7 @@ def get_jQuery():
 def generate_images():
     data = retrieveCredentials()
     getInstagramMedia(data[0], "", data[1]["id"], 10)
+    return
 
 
 if __name__ == '__main__':
