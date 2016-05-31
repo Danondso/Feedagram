@@ -1,11 +1,15 @@
 import os
 from instagram import InstagramAPI
+# from pip._vendor.requests.packages.urllib3 import request
+
 import json
 import urllib
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
+
+image_loaded = False
 
 image_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/templates/images'  # PATH TO IMAGES
 
@@ -50,6 +54,15 @@ def write_metadata(metadata):
     media_info = {'metadata': metadata}
     with open('image_info.json', 'w') as outfile:
         json.dump(media_info, outfile, indent=2)
+    image_loaded = True
+
+
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
 
 @app.route('/')
 def main():
@@ -58,14 +71,14 @@ def main():
 
 @app.route('/static')
 def get_jQuery():
-    return app.send_static_file("jquery-1.12.3.min.js")
+    return app.send_static_file("jquery-1.12.4.min.js")
 
 
 @app.route('/generate_images')
 def generate_images():
     data = retrieveCredentials()
     getInstagramMedia(data[0], "", data[1]["id"], 10)
-    return
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
