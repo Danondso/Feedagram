@@ -15,6 +15,8 @@ image_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/templates/images'  # PAT
 
 credentials_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/json'  # PATH TO CREDENTIALS
 
+image_info_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/'
+
 
 def retrieveCredentials():
     try:
@@ -57,11 +59,9 @@ def write_metadata(metadata):
     image_loaded = True
 
 
-@app.route('/_add_numbers')
-def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
+@app.route('/get_image_metadata')
+def get_image_metadata():
+    return jsonify(result=get_json())
 
 
 @app.route('/')
@@ -79,6 +79,13 @@ def generate_images():
     data = retrieveCredentials()
     getInstagramMedia(data[0], "", data[1]["id"], 10)
     return render_template('index.html')
+
+
+def get_json():
+    image_info = os.path.join(image_info_path, 'image_info.json')
+    with open(image_info) as image_info_file:
+        json_payload = json.load(image_info_file)
+        return json_payload
 
 
 if __name__ == '__main__':

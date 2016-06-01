@@ -16,29 +16,43 @@
 
 <h1>Hello World!</h1>
 
-<form action="/generate_images">
-    <button>Do The Needful</button>
+<form action="/output_json">
+    <button id="make_carousel">Do The Needful</button>
 </form>
 <img src="{{ url_for('static',filename="images/img0.jpg")}}">
+<!--
+<script type="text/javascript">
+    $(function() {
+     $('#make_carousel').bind('click', function(){
+
+     $.getJSON($SCRIPT_ROOT + '/generate_images', {
+
+     }
+     })
 
 
+
+
+</script>
+-->
 <script type=text/javascript>
   $(function() {
     $('a#calculate').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
-        a: $('input[name="a"]').val(),
-        b: $('input[name="b"]').val()
-      }, function(data) {
-        $("#result").text(data.result);
+      $.getJSON($SCRIPT_ROOT + '/get_image_metadata',
+      function(data) {
+         console.log(data.result.metadata[0].caption)
+
+        for(i = 0; i < 10; i++)
+           console.log(data.result.metadata[i].caption)
+
+         $("#result").text(data.result.metadata[2].caption);
       });
       return false;
     });
   });
 </script>
 <h1>jQuery Example</h1>
-<p><input type=text size=5 name=a> +
-   <input type=text size=5 name=b> =
-   <span id=result>?</span>
+
 <p><a href=# id=calculate>calculate server side</a>
 
 
