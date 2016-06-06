@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 image_loaded = False
 
-image_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/templates/images'  # PATH TO IMAGES
+image_path = './static/images'  # PATH TO IMAGES
 
-credentials_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/json'  # PATH TO CREDENTIALS
+credentials_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/static/json'  # PATH TO CREDENTIALS
 
-image_info_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/'
+image_info_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/static/json' # PATH TO IMAGE METADATA
 
 
 def retrieveCredentials():
@@ -40,7 +40,6 @@ def getInstagramMedia(access_token, client_secret, id, count):
             metadata[counter] = {'image_name': file_destination, 'caption': has_caption(media.caption)}
             counter += 1
         write_metadata(metadata)
-
     except Exception as e:
         print(e.args)
     return
@@ -57,6 +56,13 @@ def write_metadata(metadata):
     with open('image_info.json', 'w') as outfile:
         json.dump(media_info, outfile, indent=2)
     image_loaded = True
+
+
+def get_json():
+    image_info = os.path.join(image_info_path, 'image_info.json')
+    with open(image_info) as image_info_file:
+        json_payload = json.load(image_info_file)
+        return json_payload
 
 
 @app.route('/get_image_metadata')
@@ -79,14 +85,6 @@ def generate_images():
     data = retrieveCredentials()
     getInstagramMedia(data[0], "", data[1]["id"], 10)
     return render_template('index.html')
-
-
-def get_json():
-    image_info = os.path.join(image_info_path, 'image_info.json')
-    with open(image_info) as image_info_file:
-        json_payload = json.load(image_info_file)
-        return json_payload
-
 
 if __name__ == '__main__':
     app.run()

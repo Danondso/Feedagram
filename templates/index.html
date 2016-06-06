@@ -20,35 +20,46 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-
 <script type=text/javascript>
   $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
 <h1>Hello World!</h1>
 
-<form action="/output_json">
+<form action="/generate_images">
     <button id="make_carousel">Do The Needful</button>
 </form>
-<img src="{{ url_for('static',filename="images/img0.jpg")}}">
 
 <script type=text/javascript>
   $(function() {
-    $('a#calculate').bind('click', function() {
+    $(window).load(function() {
       $.getJSON($SCRIPT_ROOT + '/get_image_metadata',
       function(data) {
-        for(i = 0; i < 10; i++)
-          $("#comment").text(data.result.metadata[i].caption);
+          $("#comment0").text(data.result.metadata[0].caption);
+          $("#image0").prop("src", data.result.metadata[0].image_name);
+          $("#comment1").text(data.result.metadata[1].caption);
+          $("#image1").prop("src", data.result.metadata[1].image_name);
+          $("#comment2").text(data.result.metadata[2].caption);
+          $("#image2").prop("src", data.result.metadata[2].image_name);
+          $("#comment3").text(data.result.metadata[3].caption);
+          $("#image3").prop("src", data.result.metadata[3].image_name);
+          $("#comment4").text(data.result.metadata[4].caption);
+          $("#image4").prop("src", data.result.metadata[4].image_name);
+          $("#comment5").text(data.result.metadata[5].caption);
+          $("#image5").prop("src", data.result.metadata[5].image_name);
+          $("#comment6").text(data.result.metadata[6].caption);
+          $("#image6").prop("src", data.result.metadata[6].image_name);
+          $("#comment7").text(data.result.metadata[7].caption);
+          $("#image7").prop("src", data.result.metadata[7].image_name);
+          $("#comment8").text(data.result.metadata[8].caption);
+          $("#image8").prop("src", data.result.metadata[8].image_name);
+          $("#comment9").text(data.result.metadata[9].caption);
+          $("#image9").prop("src", data.result.metadata[9].image_name);
       });
       return false;
     });
   });
 </script>
-<h1>jQuery Example</h1>
-
-<p><a href=# id=calculate>calculate server side</a>
-
-<p id="comment"></p>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -73,43 +84,53 @@
 
 
      <div class="item active">
-      <img src="{{ url_for('static',filename="images/img0.jpg")}}">
+      <img id="image0">
+         <p id="comment0"></p>
     </div>
 
      <div class="item">
-      <img src="{{ url_for('static',filename="images/img1.jpg")}}">
+      <img id="image1">
+        <p id="comment1"></p>
+     </div>
+
+       <div class="item">
+      <img  id="image2">
+           <p id="comment2"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img2.jpg")}}">
+      <img  id="image3">
+           <p id="comment3"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img3.jpg")}}">
+      <img  id="image4">
+           <p id="comment4"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img4.jpg")}}">
+      <img  id="image5">
+           <p id="comment5"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img5.jpg")}}">
+      <img id="image6">
+           <p id="comment6"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img6.jpg")}}">
+      <img id="image7">
+           <p id="comment7"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img7.jpg")}}">
+      <img id="image8">
+           <p id="comment8"></p>
     </div>
 
        <div class="item">
-      <img src="{{ url_for('static',filename="images/img8.jpg")}}">
-    </div>
-
-       <div class="item">
-      <img src="{{ url_for('static',filename="images/img9.jpg")}}">
+      <img id="image9">
+           <p id="comment19"></p>
     </div>
   </div>
 
