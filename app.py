@@ -15,7 +15,7 @@ image_path = './static/images'  # PATH TO IMAGES
 
 credentials_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/static/json'  # PATH TO CREDENTIALS
 
-image_info_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/static/json' # PATH TO IMAGE METADATA
+image_info_path = 'C:/Users/Anony/Documents/GitHub/Feedagram/static/json'  # PATH TO IMAGE METADATA
 
 
 def retrieveCredentials():
@@ -42,7 +42,13 @@ def getInstagramMedia(access_token, client_secret, id, count):
         write_metadata(metadata)
     except Exception as e:
         print(e.args)
-    return
+
+
+def write_metadata(metadata):
+    media_info = {'metadata': metadata}
+    info_path = os.path.join(image_info_path, 'image_info.json')
+    with open(info_path, 'w') as outfile:
+        json.dump(media_info, outfile, indent=2)
 
 
 def has_caption(caption):
@@ -50,23 +56,19 @@ def has_caption(caption):
         return ''
     return caption.text
 
-
-def write_metadata(metadata):
-    media_info = {'metadata': metadata}
-    with open('image_info.json', 'w') as outfile:
-        json.dump(media_info, outfile, indent=2)
-    image_loaded = True
-
-
 def get_json():
     image_info = os.path.join(image_info_path, 'image_info.json')
-    with open(image_info) as image_info_file:
-        json_payload = json.load(image_info_file)
-        return json_payload
-
+    try:
+        with open(image_info) as image_info_file:
+            json_payload = json.load(image_info_file)
+            return json_payload
+    except Exception as e:
+        print(e.args)
 
 @app.route('/get_image_metadata')
 def get_image_metadata():
+    data = retrieveCredentials()
+    getInstagramMedia(data[0], "", data[1]["id"], 10)
     return jsonify(result=get_json())
 
 
@@ -74,17 +76,11 @@ def get_image_metadata():
 def main():
     return render_template('index.html')
 
-
+8
 @app.route('/static')
 def get_jQuery():
     return app.send_static_file("jquery-1.12.4.min.js")
 
-
-@app.route('/generate_images')
-def generate_images():
-    data = retrieveCredentials()
-    getInstagramMedia(data[0], "", data[1]["id"], 10)
-    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run()
