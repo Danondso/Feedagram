@@ -1,0 +1,164 @@
+﻿/* Content-Top */
+body{
+
+		background-image: url('../images/background.jpg');
+		background-repeat:no-repeat;
+        background-size:cover;
+        color:#FEFFFF;
+
+	}
+
+	.header{
+
+		text-align: center;
+		min-height:400px;
+		width:100%;
+	background-size:cover;
+
+	-webkit-background-size:cover;
+	-o-background-size:cover;
+	-moz-background-size:cover;
+	-ms-background-size:cover;
+	}
+
+	.navbar{
+
+		text-align: center;
+
+	}
+
+ /*--content-top--*/
+.top-grid i{
+	font-size: 2.6em;
+	color: #fff;
+    border-radius: 100px;
+    width: 95px;
+    height: 95px;
+    text-align: center;
+    line-height: 2.2em;
+    border: 3px solid #101010;
+}
+
+.top-grid {
+	text-align: center;
+	border:none;
+	padding:2em 1em;
+	    background-color: #101010;
+}
+.grid-top{
+    position:relative;
+	    cursor: pointer;
+}
+.content-top{
+	position:relative;
+	padding: 6.5em 0;
+}
+.content-top1{
+	top: -6.5%;
+}
+.top-grid  h3{
+	font-size:1.7em;
+	color:#fff;
+	margin:1em 0 0.5em;
+}
+.top-grid  p{
+	color: #fff;
+	line-height: 1.9em;
+	font-size: 1em;
+}
+
+.grid-top:hover .top-grid i {
+    border: 3px solid #fff;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+
+.content-mid{
+    width:auto;
+    background-image: url('../images/content-background.jpg');
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, 1);
+    text-align:center;
+	padding: 11.5em 0;
+
+}
+
+.technology{
+     text-align:center;
+      cursor:pointer;
+      padding:1em;
+
+}
+
+.technology i{
+    font-size:5em;
+}
+
+.technology .btn{
+    background-color:transparent;
+    color:#fff;
+}
+
+.technology h2{
+     color: #fff;
+	line-height: 1.9em;
+     text-align:center;
+
+}
+
+.technology p, h3 {
+    color: #fff;
+	line-height: 1.9em;
+	font-size: 1.5em;
+    text-align:center;
+}
+
+.techInfo{
+    border:none;
+    color:#000;
+}
+
+
+.feedagram{
+font-size:1.5em;
+width:100%;
+background-color: #101010;
+bottom:20px;
+}
+
+.feedagram img{
+    border-radius:25px;
+    max-height:70%;
+    max-width:70%;
+    margin: 0 auto;
+		box-shadow: 0 0 50px 0 rgba(0, 0, 0, 1);
+
+}
+
+.feedagram-description{
+	display:block;
+	text-align: center;
+}
+
+.carousel-control.right, .carousel-control.left {
+  background-image:none;
+	padding: 2.5em 0 0;
+	font-size: 6.5em;
+}
+
+.content-mid2{
+    text-align:center;
+    padding: 1.5em 0;
+}
+.content-mid2 a{
+    color:#fff;
+    font-size:5em;
+}
+
+.footer p{
+    text-align:center;
+    font-size:1.5em;
+
+}

@@ -41,7 +41,7 @@ code = (str(input("Paste in code in query string after redirect: ").strip()))
 
 access_token = api.exchange_code_for_access_token(code)
 
-with open('access_token.json', 'w') as outputFile:
+with open('/var/www/feedagram/feedagram/json/access_token.json', 'w') as outputFile:
     json.dump(access_token, outputFile, ensure_ascii=False)
 
 print ("Access token successfully obtained.")

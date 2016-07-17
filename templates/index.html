@@ -1,149 +1,145 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Feedagram</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/ed7c0360d9.js"></script>
+
+    <!--MFizz Icons-->
+    <link rel="stylesheet" type="text/css" href="../static/css/font-mfizz.css">
+
+    <!-- Page Stylings -->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+
+    <title> || Home ||</title>
 </head>
 
 <body>
+    <script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{
-  url_for('static', filename='js/jquery-1.12.4.min.js') }}">\x3C/script>')</script>
+    <nav class="navbar navbar-inverse" role="navigation">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle"
+                    data-toggle="collapse" data-target="#example-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Hello.</a>
+        </div>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+    </nav>
 
-<script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
+    <div id="myCarousel" class="carousel slide collapse">
+    <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+            <li data-target="#myCarousel" data-slide-to="6"></li>
+            <li data-target="#myCarousel" data-slide-to="7"></li>
+            <li data-target="#myCarousel" data-slide-to="8"></li>
+            <li data-target="#myCarousel" data-slide-to="9"></li>
+        </ol>
+        <div class="container feedagram-description">
+         <p>
+            <a href="https://github.com/Danondso/Feedagram" target="_blank">Feedagram</a>
+             is a little plugin I wrote to showcase my Instagram feed.
+             It uses Python's instagram API and is powered by the Flask framework.</p>
+        </div>
 
-<h1>Hello World!</h1>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
 
-<form action="/generate_images">
-    <button id="make_carousel">Do The Needful</button>
-</form>
+            <div class="item active">
+                <img id="image0">
+                <div class="carousel-caption" id="comment0"></div>
 
-<script type=text/javascript>
-  $(function() {
-    $(window).load(function() {
-      $.getJSON($SCRIPT_ROOT + '/get_image_metadata',
-      function(data) {
-          $("#comment0").text(data.result.metadata[0].caption);
-          $("#image0").prop("src", data.result.metadata[0].image_name);
-          $("#comment1").text(data.result.metadata[1].caption);
-          $("#image1").prop("src", data.result.metadata[1].image_name);
-          $("#comment2").text(data.result.metadata[2].caption);
-          $("#image2").prop("src", data.result.metadata[2].image_name);
-          $("#comment3").text(data.result.metadata[3].caption);
-          $("#image3").prop("src", data.result.metadata[3].image_name);
-          $("#comment4").text(data.result.metadata[4].caption);
-          $("#image4").prop("src", data.result.metadata[4].image_name);
-          $("#comment5").text(data.result.metadata[5].caption);
-          $("#image5").prop("src", data.result.metadata[5].image_name);
-          $("#comment6").text(data.result.metadata[6].caption);
-          $("#image6").prop("src", data.result.metadata[6].image_name);
-          $("#comment7").text(data.result.metadata[7].caption);
-          $("#image7").prop("src", data.result.metadata[7].image_name);
-          $("#comment8").text(data.result.metadata[8].caption);
-          $("#image8").prop("src", data.result.metadata[8].image_name);
-          $("#comment9").text(data.result.metadata[9].caption);
-          $("#image9").prop("src", data.result.metadata[9].image_name);
-      });
-      return false;
-    });
-  });
-</script>
+            </div>
 
-<div id="myCarousel" class="carousel" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
-      <li data-target="#myCarousel" data-slide-to="4"></li>
-      <li data-target="#myCarousel" data-slide-to="5"></li>
-      <li data-target="#myCarousel" data-slide-to="6"></li>
-      <li data-target="#myCarousel" data-slide-to="7"></li>
-      <li data-target="#myCarousel" data-slide-to="8"></li>
-      <li data-target="#myCarousel" data-slide-to="9"></li>
-  </ol>
+            <div class="item">
+                <img id="image1">
+                  <div class="carousel-caption" id="comment1"></div>
+            </div>
 
+            <div class="item">
+                <img id="image2">
+                <div class="carousel-caption" id="comment2"></div>
+            </div>
 
+            <div class="item">
+                <img id="image3">
+                  <div class="carousel-caption" id="comment3"></div>
+            </div>
 
+            <div class="item">
+                <img id="image4">
+                <div class="carousel-caption" id="comment4"></div>
+            </div>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
+            <div class="item">
+                <img id="image5">
+                  <div class="carousel-caption" id="comment5"></div>
+            </div>
 
+            <div class="item">
+                <img id="image6">
+                  <div class="carousel-caption" id="comment6"></div>
+            </div>
 
-     <div class="item active">
-      <img id="image0">
-         <p id="comment0"></p>
+            <div class="item">
+                <img id="image7">
+                  <div class="carousel-caption" id="comment7"></div>
+            </div>
+
+            <div class="item">
+                <img id="image8">
+                  <div class="carousel-caption" id="comment8"></div>
+            </div>
+
+            <div class="item">
+                <img id="image9">
+                  <div class="carousel-caption" id="comment9"></div>
+            </div>
+        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 
-     <div class="item">
-      <img id="image1">
-        <p id="comment1"></p>
-     </div>
 
-       <div class="item">
-      <img  id="image2">
-           <p id="comment2"></p>
-    </div>
 
-       <div class="item">
-      <img  id="image3">
-           <p id="comment3"></p>
-    </div>
-
-       <div class="item">
-      <img  id="image4">
-           <p id="comment4"></p>
-    </div>
-
-       <div class="item">
-      <img  id="image5">
-           <p id="comment5"></p>
-    </div>
-
-       <div class="item">
-      <img id="image6">
-           <p id="comment6"></p>
-    </div>
-
-       <div class="item">
-      <img id="image7">
-           <p id="comment7"></p>
-    </div>
-
-       <div class="item">
-      <img id="image8">
-           <p id="comment8"></p>
-    </div>
-
-       <div class="item">
-      <img id="image9">
-           <p id="comment19"></p>
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
 </div>
+    </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="../static/js/jquery-2.2.1.min.js"></script>
+    <script src="../static/js/get_image_carousel.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
 </html>
